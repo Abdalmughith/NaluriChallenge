@@ -1,5 +1,5 @@
 const express = require('express')
-
+const path = require('path');
 const app = express()
 const BigInteger = require('jsbn').BigInteger;
 const { PerformanceObserver, performance } = require('perf_hooks');
@@ -17,18 +17,37 @@ app.get('/calculateNextDecimalPrecision', function (req, res) {
 
 
 let  sunCircumference =function (pi,sunRadiusTimes2,cb) {
-    return cb(bi(pi).multiply(sunRadiusTimes2))
+
+    return cb(bi(pi).multiply(sunRadiusTimes2).toString())
     
 } 
 app.get('/sunCircumference', function (req, res) {
     sunCircumference(pi,sunRadiusTimes2,function (circumference) {
-        res.send(circumference.toString())
+        res.send(circumference)
     })
 })
 
 
 
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+    let passPi =""
+    if (pi == "")
+        passPi="3.14"
+    else
+         passPi = pi
+     sunCircumference(passPi,sunRadiusTimes2,function (circumference) {
+        res.render("index", {
+            pi: passPi,
+            sunCircumference: circumference.replace(/^4/,'4.')
+    
+        });
+    })
+
+});
 
 let pi = ""
 let q = bi(1), r = bi(0), t = bi(1), k = bi(1), n = bi(3), l = bi(3);
