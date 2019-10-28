@@ -1,0 +1,23 @@
+{
+  "name": "nalurichallenge",
+  "version": "1.0.0",
+  "description": "The Naluri space project is investigating how we could model the solar system. As a first step we’d like to calculate the circumference of the sun.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdalmughith/NaluriChallenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdalmughith/NaluriChallenge/issues"
+  },
+  "homepage": "https://github.com/Abdalmughith/NaluriChallenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsbn": "^1.1.0"
+  }
+}
