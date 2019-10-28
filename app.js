@@ -3,15 +3,33 @@ const express = require('express')
 const app = express()
 const BigInteger = require('jsbn').BigInteger;
 const { PerformanceObserver, performance } = require('perf_hooks');
+let bi = function (n, b) { return new BigInteger(n.toString(), b ? b : 10); };
 
-app.get('/', function (req, res) {
+//sunRadius in Km = 695.510
+const sunRadiusTimes2 = bi('695.510').multiply(bi(2))
+
+
+app.get('/calculateNextDecimalPrecision', function (req, res) {
     nextDecimalPrecision(function (pi) {
         res.send(pi)
     })
 })
-app.listen(3000)
 
-let bi = function (n, b) { return new BigInteger(n.toString(), b ? b : 10); };
+
+let  sunCircumference =function (pi,sunRadiusTimes2,cb) {
+    return cb(bi(pi).multiply(sunRadiusTimes2))
+    
+} 
+app.get('/sunCircumference', function (req, res) {
+    sunCircumference(pi,sunRadiusTimes2,function (circumference) {
+        res.send(circumference.toString())
+    })
+})
+
+
+
+
+
 let pi = ""
 let q = bi(1), r = bi(0), t = bi(1), k = bi(1), n = bi(3), l = bi(3);
 let one = bi(1), two = bi(2), three = bi(3), four = bi(4), seven = bi(7), ten = bi(10);
@@ -45,6 +63,7 @@ function nextDecimalPrecision(callBack) {
     }
 }
 
+app.listen(3000)
 
 //test before add callback
 // let t0 = performance.now();
