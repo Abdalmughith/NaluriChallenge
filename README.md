@@ -19,7 +19,7 @@ every iteration give many of digits and Do we need full precision from the start
 GET- a last calculated pi and calculate Next Decimal Precision
 
 	app.get('/calculateNextDecimalPrecision', function (req, res) {
-    nextDecimalPrecision(function (pi) {
-        res.send(pi)
-    })
-  })
+    		nextDecimalPrecision(function (pi) {
+        		res.send(pi)
+    		})
+    	})
