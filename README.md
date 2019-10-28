@@ -15,8 +15,8 @@ every iteration give many of digits and Do we need full precision from the start
 2. Open `http://localhost:3000` in a web browser displays The servers’ current known value of Pi and The circumference of the sun.
 
 #### HTTP Methods
-
 GET- a last calculated pi and calculate Next Decimal Precision
+`curl http://localhost:3000/calculateNextDecimalPrecision`
 
 	app.get('/calculateNextDecimalPrecision', function (req, res) {
     		nextDecimalPrecision(function (pi) {
